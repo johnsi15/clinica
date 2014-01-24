@@ -1,0 +1,70 @@
+  h1{
+	    	text-align: center;
+	    }
+	    th{
+	    	font-size: 1.5em;
+	    }
+	    td{
+	    	font-size: 1.3em;
+	    }
+	    label.error{
+			float: none; 
+			color: red; 
+			padding-left: .5em;
+		    vertical-align: middle;
+		    font-size: 12px;
+		}
+		form, label{
+			font-size: 14px;
+			font-weight: bold;
+		}
+	    p{
+	    	color: #df0024;
+	    	font-size: 20px;
+	    }
+	    textarea{
+	    	/*resize: none;*/
+	    	font-size: 16px;
+	    	width: 250px;
+	    }
+	    #aviso{
+	    	background: rgba(255,0,0,0.8);
+	    	color: white;
+	    }
+	    #cerrar{
+	        padding: 35px; 
+	    	/* margin: auto; */
+	    	text-align: right;
+	    	font-weight: bold;
+	    	font-size: 38px;
+	    }
+	    #fondo{
+	    	background: #feffff;
+	       	/* box-shadow:inset -3px -2px 37px #000000; */
+	    }
+	    #validate2{
+		    margin-left: 17%;
+		}
+		#mensaje{
+	        float: left;
+	    	margin-left: 45%;
+	    	position: fixed;
+	    	top: 18%;
+	    	display: block;
+       	}
+       	#mensajeError{
+       		float: left;
+	    	margin-left: 45%;
+	    	position: fixed;
+	    	top: 18%;
+	    	display: block;
+       	}
+       	#ver{
+       		margin-left: 43%;
+       		margin-top: 6%;
+       	}
+	    .notas{
+	    	margin-left: 80px;
+	    	position: fixed;
+	    	top: 190px;
+	    }
