@@ -30,6 +30,7 @@
         $observa = $_POST['observa'];
         $medico = $_POST['medico'];
         $objeto->registrarCita($codigo,$nom,$entidad,$tipo,$fechaI,$fechaS,$fechaA,$observa,$medico);
+        $objeto->paginacionCitas();
         $objeto->verCitas();
    }
 
@@ -46,6 +47,7 @@
         $observa = $_POST['observaEdit'];
         $medico = $_POST['medicoEdit'];
         $objeto->modificarCita($cedula,$codigo,$nom,$entidad,$tipo,$fechaS,$fechaA,$observa,$medico);
+        $objeto->paginacionCitas();
         $objeto->verCitas();
    }
 
@@ -64,17 +66,11 @@
         $objeto->verMedicos();
    }
 
-   /*refrescar la tabla al cerrar la ventana de los que se les vencio las fechas de pago*/
-   if(isset($_POST['verEstu'])){
-       $objeto->verEstudiantes();
-       $objeto->paginacionEstudianteMenu();
-   }
-
    /*eliminamos la cita */
    if(isset($_POST['deleteCita'])){
        $cod = $_POST['id_delete'];
        $objeto->eliminarCita($cod);
-       //$objeto->paginacionDatosPersonales();
+       $objeto->paginacionCitas();
        $objeto->verCitas();
    }
 
@@ -94,10 +90,12 @@
 
 
    /*buscador en tiempo real para modificar los datos personales de los estudiantes*/
-   if(isset($_POST['query'])){
-       $palabra = $_POST['query'];
-       $objeto->buscarEstudiante($palabra);
+   if(isset($_POST['queryCitas'])){
+       $palabra = $_POST['queryCitas'];
+       $objeto->buscarCitas($palabra);
    }
+
+
    /*buscador en tiempo real para los estudiantes que estan pagos y van a renovar el tiempo de uso del gim*/
    if(isset($_POST['queryTiempo'])){
        $palabra = $_POST['queryTiempo'];
