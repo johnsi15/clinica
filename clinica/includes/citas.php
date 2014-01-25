@@ -14,6 +14,8 @@
 	<script src="../js/bootstrap.js"></script>
 	<script src="../js/citas.js"></script>
 	<script src="../js/funciones.js"></script>
+	<script src="../js/editar.js"></script>
+	<script src="../js/eliminar.js"></script>
 	<?php
       session_start();
       if(isset($_SESSION['id_user'])){
@@ -34,10 +36,10 @@
 		    font-size: 12px;
 		}
 		th{
-	    	font-size: 1.4em;
+	    	font-size: 1.1em;
 	    }
 	    td{
-	    	font-size: 1.2em;
+	    	font-size: 1.1em;
 	    }
 		p{
 	    	color: #df0024;
@@ -73,6 +75,8 @@
       	//$('#info').show({html:true});
       	$('#infoFecha').tooltip('hide');
       	$('#infoFecha2').tooltip('hide');
+      	$('#infoFechaEdit').tooltip('hide');
+      	$('#infoFechaEdit2').tooltip('hide');
       	var menu = $('#bloque');
 		var contenedor = $('#bloque-contenedor');
 		var menu_offset = menu.offset();
@@ -233,7 +237,7 @@
 									<li><a href="registrarUsuario.php"><i class="icon-plus-sign"></i> Registrar Usuario</a></li>
 									<li><a href="editarUsuario.php"><i class="icon-wrench"></i> Configuración de la cuenta</a></li>
 									<li class="divider"></li>
-									<li><a href="includes/cerrar.php">Cerrar Sesion</a></li>
+									<li><a href="cerrar.php">Cerrar Sesion</a></li>
 								</ul>
 							</li>
 							<?php 
@@ -269,16 +273,17 @@
 			</div>
 			<div class="span12">
 				<hr>
-				<table class="table table-hover table-bordered table-condensed">
+				<table class="table table-hover table-bordered">
 					<thead>
 						<tr>
 							<th>Cedula</th>
 							<th>Nombre</th>
 							<th>Entidad</th>
+							<th>Tipo</th>
 							<th>Fecha Solicitud</th>
-							<th>Fecha Asignada Usuario</th>
-							<th>Fecha Asiganda IPS</th>
-							<th>Obeservaciones</th>
+							<th>Fecha Asig Usuario</th>
+							<th>Fecha Asig IPS</th>
+							<th>Obs</th>
 							<th>Medico</th>
 						</tr>
 					</thead>
@@ -305,7 +310,7 @@
 		</div>
 	</section>
 
-	<!--codigo para hacer un nuevo prestamo-->
+	<!--codigo para hacer un nueva cita-->
 	<div class="hide" id="nuevaCita" title="Nueva Cita">
      	<form action="acciones.php" method="post" id="registrarCita" class="form-inline">
      			<div class="control-group">
@@ -332,7 +337,7 @@
                                 Fecha Asignada
                          </a>
 					</label>
-					<input type="date" name="fechaA" required id="fechaA"/>
+					<input type="date" name="fechaA" id="fechaA"/>
 				</div>
 				<div class="control-group">
 					<label>Observaciones</label>
@@ -352,17 +357,65 @@
      	</form>
     </div>
 
-     <!--codigo para eliminar-->
-    <div class="hide" id="deleteReg" title="Eliminar Estudiante">
+    <!--codigo para editar los datos-->
+	<div class="hide" id="editarCita" title="Editar Cita">
+     	<form action="acciones.php" method="post" id="modificarCita" class="form-inline">
+     		<input type="hidden" id="id_editar" name="id_editar" value="0"/>
+     			<div class="control-group">
+	     			<label>Cedula:</label>
+					<input type="text" name="cedulaEdit" required id="cedulaEdit" autofocus />
+	     			<label>Nombre:</label>
+					<input type="text" name="nombreEdit" required id="nombreEdit"/>
+					<label>Entidad</label>
+					<input type="text" name="entidadEdit" required id="entidadEdit"><br>
+				</div>
+				<div class="control-group">
+					<label>Tipo Cita</label>
+					<input type="text" name="tipoEdit" id="tipoEdit"/>
+					<label>
+                         <a href="#" id="infoFechaEdit" 
+                                data-toggle="tooltip" title="FECHA  EN QUE  EL USUARIO SOLICITALA CITA ">
+                                Fecha
+                         </a>
+					</label>
+					<input type="text" name="fechaSEdit" id="fechaSEdit"/>
+					<label>
+						 <a href="#" id="infoFechaEdit2" 
+                                data-toggle="tooltip" title="FECHA DE CITA ASIGNADA POR LA IPS">
+                                Fecha Asignada
+                         </a>
+					</label>
+					<input type="text" name="fechaAEdit" id="fechaAEdit"/>
+				</div>
+				<div class="control-group">
+					<label>Observaciones</label>
+					<textarea name="observaEdit" id ="observaEdit" rows="2" cols="40"></textarea>
+					<label>Medico:</label>
+					<select id='medicoEdit' name='medicoEdit'>
+						<?php
+	                        require_once('funciones.php');
+	                        $combo = new funciones();
+	                        $combo->comboMedicosEdit();
+						?>
+					</select>
+					<input type="hidden" name="modificarCita">
+					<button  class="btn btn-primary" type="submit" id="modificarCita">Guardar</button>
+					<button  class="btn btn-danger" id="cancelar">Cancelar</button>
+				</div>	
+     	</form>
+    </div>
+
+    <!--codigo para eliminar los datos-->
+    <div class="hide" id="deleteReg" title="Eliminar Cita">
 	    <form action="acciones.php" method="post">
 	    	<fieldset id="datosOcultos">
 	    		<input type="hidden" id="id_delete" name="id_delete" value="0"/>
 	    	</fieldset>
 	    	<div class="control-group">
 	    		<label for="activoElim" class="alert alert-danger">
-	    		    <strong>Esta seguro de Eliminar este estudiante</strong><br>
+	    		    <strong>Esta seguro de Eliminar esta Cita</strong><br>
 	    		</label>
-	    		<input type="hidden" name="deleteEstudianteTiempo"/> 
+	    		<input type="hidden" name="deleteCita"/> 
 			    <button type="submit" class="btn btn-success">Aceptar</button>
 			    <button id="cancelar" name="cancelar" class="btn btn-danger">Cancelar</button>
 	    	</div>

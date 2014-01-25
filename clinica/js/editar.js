@@ -67,44 +67,47 @@ $(document).ready(function(){
         });
   });
 
-
-    /*modificamos los pagos de los vencimientos de las fechas*/
-    /*___________________________________________________________________*/
-     $('#editarPagoVencimiento').dialog({//con esto cargamos los formulario de los gastos y de los cierre no es necesario repetir el codigo
+    $('#editarCita').dialog({//con esto cargamos los formulario de los gastos y de los cierre no es necesario repetir el codigo
             autoOpen: false,
             modal: true,
-            width:280,
+            width:930,
             height:'auto',
             resizable: false,
             close:function(){
-                  $('#id_registroVen').val('0');
+                  $('#id_editar').val('0');
             }
       });
      
      /*cerrar ventana de modificar ventana de fechas vencimientos*/
       $('body').on('click','#cancelar',function(e){
          e.preventDefault();
-         $('#editarPagoVencimiento').dialog('close');
+         $('#editarCita').dialog('close');
       });
 
       //editar Registro
-      $('body').on('click','#editPagoVen',function(e){
+      $('body').on('click','#editar',function(e){
             e.preventDefault();
-      	// alert($(this).attr('href'));
-      	$('#id_registroVen').val($(this).attr('href'));
-      	 //abreimos el formulario
-            $('#editarPagoVencimiento').dialog('open');
-            //estraemos los campos.
-            $('#nombreVen').val($(this).parent().parent().children('td:eq(0)').text());
-            $('#pagoVen').val($(this).parent().parent().children('td:eq(3)').text());
-            var condicion =$(this).parent().parent().children('td:eq(4)').text();
-            $('#conVen option[value="'+condicion+'"]').attr('selected',true);
+         //abreimos el formulario
+            $('#editarCita').dialog('open');
+
+            $('#id_editar').val($(this).attr('href'));
+            $('#cedulaEdit').val($(this).parent().parent().children('td:eq(0)').text());
+            $('#nombreEdit').val($(this).parent().parent().children('td:eq(1)').text());
+            $('#entidadEdit').val($(this).parent().parent().children('td:eq(2)').text());
+            $('#tipoEdit').val($(this).parent().parent().children('td:eq(3)').text());
+            $('#fechaSEdit').val($(this).parent().parent().children('td:eq(5)').text());
+            $('#fechaAEdit').val($(this).parent().parent().children('td:eq(6)').text());
+            $('#observaEdit').val($(this).parent().parent().children('td:eq(7)').text());
+            //selecccion de un combo box.
+            var texto = $(this).parent().parent().children('td:eq(8)').text();
+            //alert(texto);
+            $('#medicoEdit option[value="'+texto+'"]').attr('selected',true);
       });
       /*__________________________________________________________________________*/
-      var petVen = $('#editarPagoVencimiento form').attr('action');
-      var metVen = $('#editarPagoVencimiento form').attr('method');
+      var petVen = $('#editarCita form').attr('action');
+      var metVen = $('#editarCita form').attr('method');
 
-      $('#editarPagoVencimiento form').on('click','#modificarPagoVen',function(e){
+      $('#editarCita form').on('click','#modificarCita',function(e){
       	    e.preventDefault();
 
       	    $.ajax({
@@ -113,15 +116,15 @@ $(document).ready(function(){
       	    	},
       	    	url: petVen,
       	    	type: metVen,
-      	    	data: $('#editarPagoVencimiento form').serialize(),
+      	    	data: $('#editarCita form').serialize(),
       	    	success: function(resp){
       	    		console.log(resp);
       	    		if(resp == "Error"){
 
       	    		}else{
-                  $('#verVencimiento').empty();//limpiamos la tabla
-                  $('#verVencimiento').html(resp);
-      	    			$('#editarPagoVencimiento').dialog('close');
+                  $('#verCitas').empty();//limpiamos la tabla
+                  $('#verCitas').html(resp);
+      	    			$('#editarCita').dialog('close');
       	    			setTimeout(function(){ $("#mensaje .alert").fadeOut(800).fadeIn(800).fadeOut(500).fadeIn(500).fadeOut(300);}, 800); 
                               var exito = '<div class="alert alert-info">'+'<button type="button" class="close" data-dismiss="alert">'+'X'+'</button>'+'<strong>'+'Modificado '+'</strong>'+' el registro se modifico correctamente'+'</div>';
       	    			$('#mensaje').html(exito);

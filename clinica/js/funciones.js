@@ -36,16 +36,16 @@ $(document).ready(function(){
                              $('#mensajeError').html(error);
                              $('#nuevaCita').dialog('close');
                        }else{
-                          $('#verPrestamos').empty();//limpiar la tabla.
-                          $('#verPrestamos').html(resp);//imprimir datos de la tabla.
+                          $('#verCitas').empty();//limpiar la tabla.
+                          $('#verCitas').html(resp);//imprimir datos de la tabla.
                           setTimeout(function(){ $("#mensaje .alert").fadeOut(1000).fadeIn(1000).fadeOut(900).fadeIn(800).fadeOut(300);}, 1000); 
                           var exito = '<div class="alert alert-success">'+'<button type="button" class="close" data-dismiss="alert">'+'X'+'</button>'+'<strong>'+'Registro guardado '+'</strong>'+' El prestamo se hizo correctamente'+'</div>';
                           $('#mensaje').html(exito);//impresion del mensaje exitoso.
-                          $('#registrarPrestamo')[0].reset();///limpiamos los campos del formulario.
-                          $("#formMenu").removeClass('open');//cerramos el sub menu del registro
+                          $('#registrarCita')[0].reset();///limpiamos los campos del formulario.
+                          //$("#formMenu").removeClass('open');//cerramos el sub menu del registro
                           $('#foco').focus();///indicamos el foco al primer valor del formulario.
                           $('#nuevaCita').dialog('close');
-                          $('[data-toggle=popover]').popover({html:true});
+                          //$('[data-toggle=popover]').popover({html:true});
                        }
                    },
                    error: function(jqXHR,estado,error){

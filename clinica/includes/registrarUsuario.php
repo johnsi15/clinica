@@ -114,7 +114,7 @@
 									<li class="active"><a href="registrarUsuario.php"><i class="icon-plus-sign"></i> Registrar Usuario</a></li>
 									<li><a href="editarUsuario.php"><i class="icon-wrench"></i> Configuración de la cuenta</a></li>
 									<li class="divider"></li>
-									<li><a href="includes/cerrar.php">Cerrar Sesion</a></li>
+									<li><a href="cerrar.php">Cerrar Sesion</a></li>
 								</ul>
 							</li>
 							<?php 

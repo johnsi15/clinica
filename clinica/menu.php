@@ -208,7 +208,7 @@
 						<?php 
 						   require_once('includes/funciones.php');
 						   $objeto = new funciones();
-						   $objeto->verClientes();
+						   //$objeto->verClientes();
 						?>
 					</tbody>
 				</table>
@@ -217,7 +217,7 @@
 		    	 	 <?php 
 		    	 	  require_once('includes/funciones.php');
 		    	 	  $objeto = new funciones();
-		    	 	  $objeto->paginacionClientesMenu();
+		    	 	  //$objeto->paginacionClientesMenu();
 			    	 ?>
 		    	</div>
 			</div>
@@ -265,10 +265,10 @@
 	</div>
 	
 	<footer>
-		<h2 id="pie"><img src="img/copyright.png">  @Jandrey15 - 2013</h2>
+		<h2 id="pie"><img src="img/copyright.png">  Clinica San Diego - 2014</h2>
 		<!-- <h2 id="pie"><img src="img/copyright.png" alt="Autor"> JA Serrano</h2> -->
 		<div> <br>
-			<p id="pie">AJ 1.0</p>
+			<p id="pie">Asignacion de Citas 1.0</p>
 		</div>
 	</footer>
 </body>
