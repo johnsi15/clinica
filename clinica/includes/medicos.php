@@ -109,24 +109,22 @@
 
 	    //buscador de los prestamos____________________________
 	    $('#buscar').live('keyup',function(){
-		  	var data = 'queryPrestamo='+$(this).val();
+		  	var data = 'queryMedicos='+$(this).val();
 		  	//console.log(data);
-      	    if(data =='queryPrestamo=' ){
+      	    if(data =='queryMedicos=' ){
       	       	$.post('acciones.php',data , function(resp){
 			  	   	//console.log(resp);
-			  	   	$('#verPrestamos').empty();//limpiar los datos
-			  	   	$('#verPrestamos').html(resp);
+			  	   	$('#verMedicos').empty();//limpiar los datos
+			  	   	$('#verMedicos').html(resp);
 	      	    	//console.log('poraca paso joder....');
-	      	    	$('[data-toggle=popover]').popover({html:true});
 			  	},'html');
       	    }else{
       	       	$.post('acciones.php',data , function(resp){
 			  	   	  //console.log(resp);
 			  	   	$('.pagination').remove();
-			  	   	$('#verPrestamos').empty();//limpiar los datos
-			  	   	$('#verPrestamos').html(resp);
+			  	   	$('#verMedicos').empty();//limpiar los datos
+			  	   	$('#verMedicos').html(resp);
 	      	    	//console.log(resp);
-	      	    	$('[data-toggle=popover]').popover({html:true});
 			  	},'html');
       	    }
 		});
@@ -148,7 +146,6 @@
 					  	    tabla.find('tbody').append(nuevosGastos.html());
 					  	 	tabla.after(nuevaPag.hide());
 					  	 	$('#cargando').hide();
-					  	 	$('[data-toggle=popover]').popover({html:true});
 					  	}
 					});
 					  $('.pagination').remove();
@@ -156,51 +153,8 @@
 		  	}
 		});
 
-		// calculo para sacar los meses
-		$('#quin').keyup(function(){
-    			var quin = $(this).val();
-    			var meses = quin/2;
-    			$('#meses').val(meses);
-    	}).keyup();
-
-
 	  });/*fin del document------------------*/
 		
-		function calculo(){
-    		//var contador = document.getElementById("totalDia");
-    		for(i=0;i<document.formu.tipo.length;i++){
-				if(document.formu.tipo[i].checked) {
-					marcado=i;
-				}
-			}
-			//alert("El valor seleccionado es: "+document.formu.tipo[marcado].value);
-    		//var valor = document.getElementById("tipo").value;
-    		if(document.formu.tipo[marcado].value == 'm'){
-    			var quin = $('#quin').val();
-	    		var prestamo = $('#prestamo').val();
-	    		var porc = $('#porc').val();
-	    		var resuPorce = (prestamo*porc)/100;
-	    		var div = resuPorce/2;
-	    		var interes = div * quin;
-	    		var meses = quin/2;
-	    		var cuota = (parseInt(prestamo) + parseInt(interes))/meses;
-
-	    		$("#vcuota").val(Math.round(cuota));
-	    		$("#interes").val(interes);
-    		}else{
-    			var quin = $('#quin').val();
-	    		var prestamo = $('#prestamo').val();
-	    		var porc = $('#porc').val();
-	    		var resuPorce = (prestamo*porc)/100;
-	    		var div = resuPorce/2;
-	    		var interes = div * quin;
-	    		var cuota = (parseInt(prestamo) + parseInt(interes))/quin;
-
-	    		$("#vcuota").val(Math.round(cuota));
-	    		$("#interes").val(interes);
-    		}
-    		
-    	}//cierre funcion
 	</script>
 </head>
 <body>
@@ -259,7 +213,7 @@
 
     <!--seccion principal de la pagina-->
 	<section class="container well" id="fondo">
-		<input type="text" name="buscar" id="buscar" class="search-query" placeholder="Buscar Nombre" autofocus>	
+		<input type="text" name="buscar" id="buscar" class="search-query" placeholder="Buscar" autofocus>	
 		<div class="row">
 			<h1>Clinica San Diego</h1> <br>
 			<div class="span4">
@@ -287,7 +241,7 @@
 		    	 	 <?php 
 		    	 	  require_once('funciones.php');
 		    	 	  $objeto = new funciones();
-		    	 	  //$objeto->paginacionPrestamos();
+		    	 	  $objeto->paginacionMedicos();
 			    	 ?>
 		    	</div>
 			</div>

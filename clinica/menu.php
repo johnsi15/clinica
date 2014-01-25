@@ -33,7 +33,7 @@
 	<script>
       $(document).ready(function(){
       	//activar el ver mas
-      	$('[data-toggle=popover]').popover({html:true});
+      	//$('[data-toggle=popover]').popover({html:true});
       	var menu = $('#bloque');
 		var contenedor = $('#bloque-contenedor');
 		var menu_offset = menu.offset();
@@ -86,19 +86,19 @@
       	    if(data =='queryMenu=' ){
       	       	$.post('includes/acciones.php',data , function(resp){
 			  	   	//console.log(resp);
-			  	   	$('#verClien').empty();//limpiar los datos
-			  	   	$('#verClien').html(resp);
+			  	   	$('#verCitasInicio').empty();//limpiar los datos
+			  	   	$('#verCitasInicio').html(resp);
 	      	    	// console.log('poraca paso joder....');
-	      	    	$('[data-toggle=popover]').popover({html:true});
+	      	    	//$('[data-toggle=popover]').popover({html:true});
 			  	},'html');
       	    }else{
       	       	$.post('includes/acciones.php',data , function(resp){
 			  	   	  //console.log(resp);
 			  	   	$('.pagination').remove();
-			  	   	$('#verClien').empty();//limpiar los datos
-			  	   	$('#verClien').html(resp);
+			  	   	$('#verCitasInicio').empty();//limpiar los datos
+			  	   	$('#verCitasInicio').html(resp);
 	      	    	// console.log(resp);
-	      	    	$('[data-toggle=popover]').popover({html:true});
+	      	    	//$('[data-toggle=popover]').popover({html:true});
 			  	},'html');
       	    }
 		});
@@ -116,7 +116,7 @@
 					  	 	var nuevosGastos = $(html).find('#clientes tbody'),
 					  	 		nuevaPag     = $(html).find('.pagination'),
 					  	 		tabla        = $('#clientes');
-					  	    tabla.find('#verClien').append(nuevosGastos.html());
+					  	    tabla.find('#verCitasInicio').append(nuevosGastos.html());
 					  	 	tabla.after(nuevaPag.hide());
 					  	 	$('#cargando').hide();
 					  	 	$('[data-toggle=popover]').popover({html:true});
@@ -194,21 +194,24 @@
 		<div class="row">         
 			<h1>Clinica San Diego</h1><br>
 			<div class="span12">
-				<table id="clientes" class="table table-hover table-striped table-bordered table-condensed">
+				<table id="clientes" class="table table-hover table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>N°</th>
+							<th>C.I</th>
 							<th>Nombre</th>
-							<th>Direccion</th>
-							<th>Telefono</th>
-							<th>Saldo</th>
+							<th>Entidad</th>
+							<th>Tipo</th>
+							<th>Fecha Solicitud</th>
+							<th>Fecha Asig Usuario</th>
+							<th>Fecha Asig IPS</th>
+							<th>Medico</th>
 						</tr>
 					</thead>
-					<tbody id="verClien">
+					<tbody id="verCitasInicio">
 						<?php 
 						   require_once('includes/funciones.php');
 						   $objeto = new funciones();
-						   //$objeto->verClientes();
+						   $objeto->verCitasInicio();
 						?>
 					</tbody>
 				</table>
@@ -217,7 +220,7 @@
 		    	 	 <?php 
 		    	 	  require_once('includes/funciones.php');
 		    	 	  $objeto = new funciones();
-		    	 	  //$objeto->paginacionClientesMenu();
+		    	 	  $objeto->paginacionCitasInicio();
 			    	 ?>
 		    	</div>
 			</div>

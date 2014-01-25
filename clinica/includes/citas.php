@@ -218,7 +218,7 @@
 
     <!--seccion principal de la pagina-->
 	<section class="container well" id="fondo">
-		<input type="text" name="buscar" id="buscar" class="search-query" placeholder="Buscar Nombre" autofocus>	
+		<input type="text" name="buscar" id="buscar" class="search-query" placeholder="Buscar" autofocus>	
 		<div class="row">
 			<h1>Clinica San Diego</h1> <br>
 			<div class="span4">
@@ -229,7 +229,7 @@
 				<table class="table table-hover table-bordered">
 					<thead>
 						<tr>
-							<th>Cedula</th>
+							<th>C.I</th>
 							<th>Nombre</th>
 							<th>Entidad</th>
 							<th>Tipo</th>

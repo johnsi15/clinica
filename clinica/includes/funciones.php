@@ -44,83 +44,134 @@
         }
     }*/
 
-    /*funcion para registrar los pagos de los prestamos */
-    /*public function registrarPago($cedula,$fecha,$pago,$interes,$nPrestamo){
+    /*ver todas las citas */
+    public function verCitasInicio(){
+        $cant_reg = 10;//definimos la cantidad de datos que deseamos tenes por pagina.
 
-        $resultado = mysql_query("SELECT * FROM prestamos WHERE codigo='$nPrestamo'");
-        $fila = mysql_fetch_array($resultado);
-        if($fila['saldo'] == '0'){
-             echo "Error";
-             return false;
+        if(isset($_GET["pagina"])){
+            $num_pag = $_GET["pagina"];//numero de la pagina
         }else{
-            $nuevoInteres = $fila['saldoInteres'] - $interes;
-            $nuevoSaldo = $fila['saldo'] - $pago;
-
-            mysql_query("INSERT INTO pagos (cedulaPagos,fecha,abonoCapital,abonoInteres,saldo,numeroPresta)
-                                          VALUES ('$cedula','$fecha','$pago','$interes','$nuevoSaldo','$nPrestamo')")
-                                          or die ("Error");
-
-            mysql_query("UPDATE prestamos SET saldo='$nuevoSaldo', saldoInteres='$nuevoInteres',notificacion='1',mes='0' WHERE codigo='$nPrestamo'") 
-                                        or die ("Error");
-
-            $resultado2 = mysql_query("SELECT * FROM caja");
-            $fila2 = mysql_fetch_array($resultado2);
-            $nuevaBase = $fila2['baseTotal'] + $pago;
-            $nuevoInteres = $fila2['interesTotal'] + $interes;
-
-            mysql_query("UPDATE caja SET interesTotal='$nuevoInteres', baseTotal='$nuevaBase'") 
-                                        or die ("Error");
-            return true;
-            if($fila['saldo'] == '0'){
-                mysql_query("UPDATE prestamos SET notificacion='3' WHERE codigo='$nPrestamo'") 
-                                        or die ("Error");
-            }
-        } 
-    }*/
-
-    /*public function registrarPago2($cedula,$fecha,$pago,$interes,$nPrestamo){
-        $resultado = mysql_query("SELECT * FROM prestamos WHERE codigo='$nPrestamo'");
-        $fila = mysql_fetch_array($resultado);
-        if($fila['saldo'] == '0'){
-             echo "Error";
-             return false;
-        }else{
-            $nuevoInteres = $fila['saldoInteres'] - $interes;
-            $nuevoSaldo = $fila['saldo'] - $pago;
-
-            mysql_query("INSERT INTO pagos (cedulaPagos,fecha,abonoCapital,abonoInteres,saldo,numeroPresta)
-                                          VALUES ('$cedula','$fecha','$pago','$interes','$nuevoSaldo','$nPrestamo')")
-                                          or die ("Error");
-
-            mysql_query("UPDATE prestamos SET saldo='$nuevoSaldo', saldoInteres='$nuevoInteres',notificacion='1',mes='0' WHERE codigo='$nPrestamo'") 
-                                        or die ("Error en el update");
-
-            $resultado2 = mysql_query("SELECT * FROM caja");
-            $fila2 = mysql_fetch_array($resultado2);
-            $nuevaBase = $fila2['baseTotal'] + $pago;
-            $nuevoInteres = $fila2['interesTotal'] + $interes;
-
-            mysql_query("UPDATE caja SET interesTotal='$nuevoInteres', baseTotal='$nuevaBase'") 
-                                        or die ("Error en el update");
-            return true;
-            if($fila['saldo'] == '0'){
-                mysql_query("UPDATE prestamos SET notificacion='3' WHERE codigo='$nPrestamo'") 
-                                        or die ("Error");
-                echo'cero';
-            }
-        } 
-    }*/
-
-    /*actualizar la base de la caja si es la primera vez lo registramos*/
-    /*public function actualizarBase($base){
-        $resultado = mysql_query("SELECT * FROM caja");
-        if($fila = mysql_fetch_array($resultado)){
-            mysql_query("UPDATE caja SET baseTotal='$base'") 
-                                    or die ("Error en el update");
-        }else{
-            mysql_query("INSERT INTO caja (baseTotal,interesTotal) VALUES ('$base','0')") or die ("Error");
+            $num_pag = 1;
         }
-    }*/
+
+        if(!$num_pag){//preguntamos si hay algun valor en $num_pag.
+            $inicio = 0;
+            $num_pag = 1;
+        }else{//se activara si la variable $num_pag ha resivido un valor oasea se encuentra en la pagina 2 o ha si susecivamente 
+            $inicio = ($num_pag-1)*$cant_reg;//si la pagina seleccionada es la numero 2 entonces 2-1 es = 1 por 10 = 10 empiesa a contar desde la 10 para la pagina 2 ok.
+        }
+
+        $resultado = mysql_query("SELECT * FROM citas,medicos WHERE citas.doctor=medicos.idMedico ORDER BY citas.id ASC LIMIT $inicio,$cant_reg");
+        while($fila = mysql_fetch_array($resultado)){
+            echo '<tr> 
+                    <td>'.$fila['cedula'].'</td>
+                    <td>'.$fila['nombre'].'</td>
+                    <td>'.$fila['entidad'].'</td>
+                    <td>'.$fila['tipo'].'</td>
+                    <td>'.$fila['fechaSolicitud'].'</td>
+                    <td>'.$fila['fechaAsignacionPaciente'].'</td>
+                    <td>'.$fila['fechaAsignacionSistema'].'</td>
+                    <td>'.$fila['nombreMedico'].'</td>
+                </tr>';
+        }
+    }
+
+    /*paginacion citas inicio*/
+    public function paginacionCitasInicio(){
+            $cant_reg = 10;//definimos la cantidad de datos que deseamos tenes por pagina.
+
+            if(isset($_GET["pagina"])){
+                $num_pag = $_GET["pagina"];//numero de la pagina
+            }else{
+                $num_pag = 1;
+            }
+
+            if(!$num_pag){//preguntamos si hay algun valor en $num_pag.
+                $inicio = 0;
+                $num_pag = 1;
+
+            }else{//se activara si la variable $num_pag ha resivido un valor oasea se encuentra en la pagina 2 o ha si susecivamente 
+                $inicio = ($num_pag-1)*$cant_reg;//si la pagina seleccionada es la numero 2 entonces 2-1 es = 1 por 10 = 10 empiesa a contar desde la 10 para la pagina 2 ok.
+            }
+            $result = mysql_query("SELECT * FROM citas,medicos WHERE citas.doctor=medicos.idMedico ORDER BY citas.id ASC");///hacemos una consulta de todos los datos de cinternet
+           
+            $total_registros=mysql_num_rows($result);//obtenesmos el numero de datos que nos devuelve la consulta
+
+            $total_paginas = ceil($total_registros/$cant_reg);
+
+            echo '<div class="pagination" style="display: none;">
+                    ';
+            if(($num_pag+1)<=$total_paginas){//preguntamos si el numero de la pagina es menor o = al total de paginas para que aparesca el siguiente
+                
+                echo "<ul><li class='next'> <a href='menu.php?pagina=".($num_pag+1)."'> Next </a></li></ul>";
+            } ;echo '
+                   </div>';
+    }/*fin*/
+
+    /*buscador en tiempo real de las citas en inicio */
+    public function buscarCitasInicio($palabra){
+        if($palabra == ''){
+            $cant_reg = 10;//definimos la cantidad de datos que deseamos tenes por pagina.
+
+            if(isset($_GET["pagina"])){
+                $num_pag = $_GET["pagina"];//numero de la pagina
+            }else{
+                $num_pag = 1;
+            }
+
+            if(!$num_pag){//preguntamos si hay algun valor en $num_pag.
+                $inicio = 0;
+                $num_pag = 1;
+            }else{//se activara si la variable $num_pag ha resivido un valor oasea se encuentra en la pagina 2 o ha si susecivamente 
+                $inicio = ($num_pag-1)*$cant_reg;//si la pagina seleccionada es la numero 2 entonces 2-1 es = 1 por 10 = 10 empiesa a contar desde la 10 para la pagina 2 ok.
+            }
+
+            $result = mysql_query("SELECT * FROM citas,medicos WHERE citas.doctor=medicos.idMedico ORDER BY citas.id ASC");///hacemos una consulta de todos los datos de cinternet
+           
+            $total_registros=mysql_num_rows($result);//obtenesmos el numero de datos que nos devuelve la consulta
+
+            $total_paginas = ceil($total_registros/$cant_reg);
+
+            echo '<div class="pagination" style="display: none;">
+                    ';
+            if(($num_pag+1)<=$total_paginas){//preguntamos si el numero de la pagina es menor o = al total de paginas para que aparesca el siguiente
+                
+                echo "<ul><li class='next'> <a href='menu.php?pagina=".($num_pag+1)."'> Next </a></li></ul>";
+            } ;echo '
+                   </div>';
+
+           $resultado = mysql_query("SELECT * FROM citas,medicos WHERE citas.doctor=medicos.idMedico ORDER BY citas.id ASC LIMIT $inicio,$cant_reg");//obtenemos los datos ordenados limitado con la variable inicio hasta la variable cant_reg
+            while($fila = mysql_fetch_array($resultado)){
+                 echo '<tr> 
+                    <td>'.$fila['cedula'].'</td>
+                    <td>'.$fila['nombre'].'</td>
+                    <td>'.$fila['entidad'].'</td>
+                    <td>'.$fila['tipo'].'</td>
+                    <td>'.$fila['fechaSolicitud'].'</td>
+                    <td>'.$fila['fechaAsignacionPaciente'].'</td>
+                    <td>'.$fila['fechaAsignacionSistema'].'</td>
+                    <td>'.$fila['nombreMedico'].'</td>
+                </tr>';
+            }/*cierre del while*/
+        }else{
+            $resultado = mysql_query("SELECT * FROM citas,medicos WHERE (citas.doctor=medicos.idMedico AND nombreMedico LIKE'%$palabra%')
+                                                OR (citas.doctor=medicos.idMedico AND entidad LIKE'%$palabra%') OR (citas.doctor=medicos.idMedico AND fechaSolicitud LIKE'%$palabra%') 
+                                                OR (citas.doctor=medicos.idMedico AND nombre LIKE'%$palabra%')");
+            //echo json_encode($resultado);
+            while($fila = mysql_fetch_array($resultado)){
+                echo '<tr> 
+                    <td>'.$fila['cedula'].'</td>
+                    <td>'.$fila['nombre'].'</td>
+                    <td>'.$fila['entidad'].'</td>
+                    <td>'.$fila['tipo'].'</td>
+                    <td>'.$fila['fechaSolicitud'].'</td>
+                    <td>'.$fila['fechaAsignacionPaciente'].'</td>
+                    <td>'.$fila['fechaAsignacionSistema'].'</td>
+                    <td>'.$fila['nombreMedico'].'</td>
+                </tr>';
+            }/*cierre del while*/
+        }
+    }/*fin*/
 
     /*ver todas las citas */
     public function verCitas(){
@@ -156,6 +207,7 @@
                 </tr>';
         }
     }
+
     /*paginacion citas*/
     public function paginacionCitas(){
             $cant_reg = 10;//definimos la cantidad de datos que deseamos tenes por pagina.
@@ -237,7 +289,6 @@
                 </tr>';
             }/*cierre del while*/
         }else{
-            echo "BIen ";
             $resultado = mysql_query("SELECT * FROM citas,medicos WHERE (citas.doctor=medicos.idMedico AND nombreMedico LIKE'%$palabra%')
                                                 OR (citas.doctor=medicos.idMedico AND entidad LIKE'%$palabra%') OR (citas.doctor=medicos.idMedico AND fechaSolicitud LIKE'%$palabra%') 
                                                 OR (citas.doctor=medicos.idMedico AND nombre LIKE'%$palabra%')");
@@ -258,7 +309,7 @@
                 </tr>';
             }/*cierre del while*/
         }
-    }
+    }/*fin*/
 
     /*modificamos los nombres de los medicos*/
     public function modificarMedico($cod,$nombre){
@@ -296,6 +347,92 @@
                 </tr>';
         }
     }
+
+    /*paginacion medicos*/
+    public function paginacionMedicos(){
+            $cant_reg = 10;//definimos la cantidad de datos que deseamos tenes por pagina.
+
+            if(isset($_GET["pagina"])){
+                $num_pag = $_GET["pagina"];//numero de la pagina
+            }else{
+                $num_pag = 1;
+            }
+
+            if(!$num_pag){//preguntamos si hay algun valor en $num_pag.
+                $inicio = 0;
+                $num_pag = 1;
+
+            }else{//se activara si la variable $num_pag ha resivido un valor oasea se encuentra en la pagina 2 o ha si susecivamente 
+                $inicio = ($num_pag-1)*$cant_reg;//si la pagina seleccionada es la numero 2 entonces 2-1 es = 1 por 10 = 10 empiesa a contar desde la 10 para la pagina 2 ok.
+            }
+            $result = mysql_query("SELECT * FROM medicos");///hacemos una consulta de todos los datos de cinternet
+           
+            $total_registros=mysql_num_rows($result);//obtenesmos el numero de datos que nos devuelve la consulta
+
+            $total_paginas = ceil($total_registros/$cant_reg);
+
+            echo '<div class="pagination" style="display: none;">
+                    ';
+            if(($num_pag+1)<=$total_paginas){//preguntamos si el numero de la pagina es menor o = al total de paginas para que aparesca el siguiente
+                
+                echo "<ul><li class='next'> <a href='medicos.php?pagina=".($num_pag+1)."'> Next </a></li></ul>";
+            } ;echo '
+                   </div>';
+    }
+
+    /*buscador en tiempo real de los medicos */
+    public function buscarMedicos($palabra){
+        if($palabra == ''){
+            $cant_reg = 10;//definimos la cantidad de datos que deseamos tenes por pagina.
+
+            if(isset($_GET["pagina"])){
+                $num_pag = $_GET["pagina"];//numero de la pagina
+            }else{
+                $num_pag = 1;
+            }
+
+            if(!$num_pag){//preguntamos si hay algun valor en $num_pag.
+                $inicio = 0;
+                $num_pag = 1;
+            }else{//se activara si la variable $num_pag ha resivido un valor oasea se encuentra en la pagina 2 o ha si susecivamente 
+                $inicio = ($num_pag-1)*$cant_reg;//si la pagina seleccionada es la numero 2 entonces 2-1 es = 1 por 10 = 10 empiesa a contar desde la 10 para la pagina 2 ok.
+            }
+
+            $result = mysql_query("SELECT * FROM medicos");///hacemos una consulta de todos los datos de cinternet
+           
+            $total_registros=mysql_num_rows($result);//obtenesmos el numero de datos que nos devuelve la consulta
+
+            $total_paginas = ceil($total_registros/$cant_reg);
+
+            echo '<div class="pagination" style="display: none;">
+                    ';
+            if(($num_pag+1)<=$total_paginas){//preguntamos si el numero de la pagina es menor o = al total de paginas para que aparesca el siguiente
+                
+                echo "<ul><li class='next'> <a href='medicos.php?pagina=".($num_pag+1)."'> Next </a></li></ul>";
+            } ;echo '
+                   </div>';
+
+           $resultado = mysql_query("SELECT * FROM medicos LIMIT $inicio,$cant_reg");//obtenemos los datos ordenados limitado con la variable inicio hasta la variable cant_reg
+            while($fila = mysql_fetch_array($resultado)){
+                 echo '<tr> 
+                    <td>'.$fila['idMedico'].'</td>
+                    <td>'.$fila['nombreMedico'].'</td>
+                    <td><a id="editarMedico" class="btn btn-mini btn-info" href="'.$fila['idMedico'].'"><strong>Editar</strong></a></td>
+                </tr>';
+            }/*cierre del while*/
+        }else{
+            $resultado = mysql_query("SELECT * FROM medicos WHERE (nombreMedico LIKE'%$palabra%')");
+            //echo json_encode($resultado);
+            while($fila = mysql_fetch_array($resultado)){
+               echo '<tr> 
+                    <td>'.$fila['idMedico'].'</td>
+                    <td>'.$fila['nombreMedico'].'</td>
+                    <td><a id="editarMedico" class="btn btn-mini btn-info" href="'.$fila['idMedico'].'"><strong>Editar</strong></a></td>
+                </tr>';
+            }/*cierre del while*/
+        }
+
+    }/*fin*/
 
     /*ver interes de la caja*/
     public function verInteres(){
