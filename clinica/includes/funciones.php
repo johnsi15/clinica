@@ -9,8 +9,8 @@
 
     public function login($user,$pass){
          session_start();
-         //$truco=sha1($pass);
-         $resultado = mysql_query("SELECT * FROM usuarios WHERE nombre='$user' AND clave='$pass'");
+         $truco=sha1($pass);
+         $resultado = mysql_query("SELECT * FROM usuarios WHERE nombre='$user' AND clave='$truco'");
          $fila = mysql_fetch_array($resultado);
          if($fila>0){
          	$id_user=$fila['id'];
@@ -1542,12 +1542,12 @@
     }
 
     public function cambiarClave($conA,$conN,$cod){
-        $resultado = mysql_query("SELECT clave FROM usuarios WHERE id='$cod'");
+        $resultado = mysql_query("SELECT clave FROM usuarios WHERE clave='$conA'");
         
         if($row = mysql_fetch_array($resultado)){
             echo "Bien";
             $hash=sha1($conN);//incriptamos la contraseña
-            mysql_query("UPDATE usuarios SET clave='$hash' WHERE id='$cod'");
+            mysql_query("UPDATE usuarios SET clave='$hash' WHERE clave='$conA'");
         }else{
             echo "Error";
         }

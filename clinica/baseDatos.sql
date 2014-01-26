@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-01-2014 a las 17:46:05
+-- Tiempo de generación: 26-01-2014 a las 23:04:59
 -- Versión del servidor: 5.6.12-log
 -- Versión de PHP: 5.4.12
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `citas` (
   PRIMARY KEY (`id`),
   KEY `doctor` (`doctor`),
   KEY `doctor_idx` (`doctor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Volcado de datos para la tabla `citas`
@@ -53,7 +53,8 @@ INSERT INTO `citas` (`id`, `cedula`, `nombre`, `entidad`, `tipo`, `fechaSolicitu
 (2, '1058265', 'andres', 'cafesalud', 'Control', '0000-00-00', '0000-00-00', '2014-01-27', '', 3),
 (3, '1058265', 'carlos', 'cafesalud', 'Colsulta', '0000-00-00', '0000-00-00', '2014-01-27', '', 1),
 (4, '1025845', 'Maria', 'coomeva', 'Consulta Primera vez', '2014-01-25', '0000-00-00', '2014-01-27', '', 2),
-(5, '12568825', 'prueba', 'cafesalud', 'Control', '2014-01-25', '2014-01-30', '0000-00-00', '', 4);
+(6, '10685424', 'dayana', 'saludcoop', 'Control', '2014-01-25', '2014-01-28', '0000-00-00', '', 4),
+(7, '1093763837', 'john andrey', 'coomeva', 'Control', '2014-01-26', '2014-02-03', '0000-00-00', '', 5);
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `medicos` (
   `idMedico` int(11) NOT NULL AUTO_INCREMENT,
   `nombreMedico` varchar(90) NOT NULL,
   PRIMARY KEY (`idMedico`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `medicos`
@@ -75,7 +76,8 @@ INSERT INTO `medicos` (`idMedico`, `nombreMedico`) VALUES
 (1, 'medico 1'),
 (2, 'medico 2'),
 (3, 'medico 3'),
-(4, 'medico 4');
+(4, 'medico 4'),
+(5, 'medico 5');
 
 -- --------------------------------------------------------
 
@@ -95,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `clave`) VALUES
-(1, 'invitado', '123456');
+(1, 'invitado', '7c4a8d09ca3762af61e59520943dc26494f8941b');
 
 --
 -- Restricciones para tablas volcadas

@@ -23,6 +23,9 @@
 	      }
 	?>
 	<style>
+		#descargar{
+			margin-left: 10%;
+		}
         .hero-unit{
         	margin-top: 5%;
         	text-align: center;
@@ -193,6 +196,8 @@
 		<input type="text" name="buscar" id="buscar" class="search-query" placeholder="Buscar" autofocus>
 		<div class="row">         
 			<h1>Clinica San Diego</h1><br>
+			<h4 align="right" id="descargar"><a href="includes/pdf.php" title="Reporte de Citas">Descargar</a></h4>
+			<hr>
 			<div class="span12">
 				<table id="clientes" class="table table-hover table-striped table-bordered">
 					<thead>
