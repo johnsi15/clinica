@@ -36,10 +36,10 @@
 		    font-size: 12px;
 		}
 		th{
-	    	font-size: 1.1em;
+	    	font-size: 1em;
 	    }
 	    td{
-	    	font-size: 1.1em;
+	    	font-size: 0.9em;
 	    }
 		p{
 	    	color: #df0024;
@@ -171,7 +171,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a href="../menu.php" class="brand">Clinica San Diego</a>
+					<a href="../menu.php" class="brand">Clinica de Oftalmologia San Diego</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav" >
 							<li class="divider-vertical"></li>
@@ -229,7 +229,8 @@
 				<table class="table table-hover table-bordered">
 					<thead>
 						<tr>
-							<th>C.I</th>
+							<th>T.D</th>
+							<th>N°</th>
 							<th>Nombre</th>
 							<th>Entidad</th>
 							<th>Tipo</th>
@@ -267,16 +268,33 @@
 	<div class="hide" id="nuevaCita" title="Nueva Cita">
      	<form action="acciones.php" method="post" id="registrarCita" class="form-inline">
      			<div class="control-group">
-	     			<label>Cedula:</label>
-					<input type="text" name="cedula" required id="cedula" autofocus/>
-	     			<label>Nombre:</label>
-					<input type="text" name="nombre" required id="nombre"/>
+					<select id="documento" name="documento" autofocus>
+						<option value="RC">(RC) Registro Civil</option>
+						<option value="TI">(TI) Tarjeta Identidad</option>
+						<option value="CC">(CC) Cedula Ciudadania</option>
+						<option value="CE">(CE) Cedula Extranjeria</option>
+						<option value="PA">(PA) Pasaporte</option>
+						<option value="NU">(NU) Numero Unico de Identifiacion</option>
+					</select>
+					<input type="text" name="cedula" required id="cedula" placeholder='Numero' class='input-medium'/>
+	     			<!-- <label>Nombre:</label> -->
+					<input type="text" name="nombre" required id="nombre" placeholder='Nombre'/>
 					<label>Entidad</label>
-					<input type="text" name="entidad" required id="entidad"><br>
+					<select id="entidad" name="entidad">
+						<option value="COOMEVA">COOMEVA</option>
+						<option value="ECOOSOS">ECOOSOS</option>
+						<option value="CAFESALUD">CAFESALUD</option>
+					</select>
+					<!-- <input type="text" name="entidad" required id="entidad">--><br> 
 				</div>
 				<div class="control-group">
 					<label>Tipo Cita</label>
-					<input type="text" name="tipo" id="tipo"/>
+					<!-- <input type="text" name="tipo" id="tipo"/> -->
+					<select id="tipo" name="tipo">
+						<option value="Consulta Primera Vez">Consulta Primera Vez</option>
+						<option value="Control Con Orden">Control Con Orden</option>
+						<option value="Control Sin Orden">Control Sin Orden</option>
+					</select>
 					<label>
                          <a href="#" id="infoFecha" 
                                 data-toggle="tooltip" title="FECHA  EN QUE  EL USUARIO SOLICITALA CITA ">
@@ -315,12 +333,25 @@
      	<form action="acciones.php" method="post" id="modificarCita" class="form-inline">
      		<input type="hidden" id="id_editar" name="id_editar" value="0"/>
      			<div class="control-group">
-	     			<label>Cedula:</label>
-					<input type="text" name="cedulaEdit" required id="cedulaEdit" autofocus />
-	     			<label>Nombre:</label>
-					<input type="text" name="nombreEdit" required id="nombreEdit"/>
+     				<select id="documentoEdit" name="documentoEdit" autofocus>
+						<option value="RC">(RC) Registro Civil</option>
+						<option value="TI">(TI) Tarjeta Identidad</option>
+						<option value="CC">(CC) Cedula Ciudadania</option>
+						<option value="CE">(CE) Cedula Extranjeria</option>
+						<option value="PA">(PA) Pasaporte</option>
+						<option value="NU">(NU) Numero Unico de Identifiacion</option>
+					</select>
+	     			<!-- <label>Cedula:</label> -->
+					<input type="text" name="cedulaEdit" required id="cedulaEdit" placeholder='Numero' class='input-medium'/>
+	     			<!-- <label>Nombre:</label> -->
+					<input type="text" name="nombreEdit" required id="nombreEdit" placeholde='Nombre'/>
 					<label>Entidad</label>
-					<input type="text" name="entidadEdit" required id="entidadEdit"><br>
+					<select id="entidadEdit" name="entidadEdit">
+						<option value="COOMEVA">COOMEVA</option>
+						<option value="ECOOSOS">ECOOSOS</option>
+						<option value="CAFESALUD">CAFESALUD</option>
+					</select>
+					<!-- <input type="text" name="entidadEdit" required id="entidadEdit"> --><br>
 				</div>
 				<div class="control-group">
 					<label>Tipo Cita</label>
@@ -376,7 +407,7 @@
 	</div>
 
 	<footer>
-		<h2 id="pie"><img src="../img/copyright.png"> Clinica San Diego - 2014</h2>
+		<h2 id="pie"><img src="../img/copyright.png"> Clinica de Oftalmologia San Diego - 2014</h2>
 		<!-- <h2 id="pie"><img src="img/copyright.png" alt="Autor"> JA Serrano</h2> -->
 		<div> <br>
 			<p id="pie">Asignacion de Citas 1.0</p>

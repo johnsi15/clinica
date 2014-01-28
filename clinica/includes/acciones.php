@@ -18,6 +18,7 @@
 
    /*registramos las citas*/
    if(isset($_POST['registrarCita'])){
+        $documento = $_POST['documento'];
         $codigo = $_POST['cedula'];
         $nom = $_POST['nombre'];
         $entidad = $_POST['entidad'];
@@ -28,7 +29,7 @@
         $fechaA = $_POST['fechaA'];//fecha que asigna por la IPS
         $observa = $_POST['observa'];
         $medico = $_POST['medico'];
-        $objeto->registrarCita($codigo,$nom,$entidad,$tipo,$fechaI,$fechaS,$fechaA,$observa,$medico);
+        $objeto->registrarCita($documento,$codigo,$nom,$entidad,$tipo,$fechaI,$fechaS,$fechaA,$observa,$medico);
         $objeto->paginacionCitas();
         $objeto->verCitas();
    }
@@ -116,7 +117,7 @@
    if(isset($_POST['UserModificarContra'])){
      $conA = $_POST['contraseñaA'];
      $conN = $_POST['contraseñaN'];
-     $cod = $_POST['id_registro'];
+     $cod = $_POST['id_registro2'];
      $objeto->cambiarClave($conA,$conN,$cod);
    }
 

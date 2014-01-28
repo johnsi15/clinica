@@ -145,7 +145,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a href="menu.php" class="brand">Clinica San Diego</a>
+					<a href="menu.php" class="brand">Clinica de Oftalmologia San Diego</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav" >
 							<li class="divider-vertical"></li>
@@ -273,7 +273,7 @@
 	</div>
 	
 	<footer>
-		<h2 id="pie"><img src="img/copyright.png">  Clinica San Diego - 2014</h2>
+		<h2 id="pie"><img src="img/copyright.png">  Clinica de Oftalmologia San Diego - 2014</h2>
 		<!-- <h2 id="pie"><img src="img/copyright.png" alt="Autor"> JA Serrano</h2> -->
 		<div> <br>
 			<p id="pie">Asignacion de Citas 1.0</p>

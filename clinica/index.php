@@ -82,7 +82,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </a>
-            <a href="" class="brand">Clinica San Diego</a>
+            <a href="" class="brand">Clinica de Oftalmologia San Diego</a>
             <div class="nav-collapse collapse">
               <ul class="nav" >
                 <li class="divider-vertical"></li>
@@ -152,7 +152,7 @@
     </article>
     <!-- pie de pagina-->
   <footer>
-      <h2 id="centrar"><img src="img/copyright.png" alt="Autor"> Clinica San Diego - 2014</h2>
+      <h2 id="centrar"><img src="img/copyright.png" alt="Autor"> Clinica de Oftalmologia San Diego - 2014</h2>
       <div id="pie">
           <p>Twitter: @Jandrey15</p>
       </div>

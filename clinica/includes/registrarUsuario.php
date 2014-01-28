@@ -95,7 +95,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a href="../menu.php" class="brand">Clinica San Diego</a>
+					<a href="../menu.php" class="brand">Clinica de Oftalmologia San Diego</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav" >
 							<li class="divider-vertical"></li>
@@ -150,7 +150,7 @@
 					<form action="acciones.php" method="post" id="validarRegistroUser">
 						<div class="control-group">
 							<label for="nombre">Nombre</label>
-							<input type="text" name="nombre" id="foco" required autofocus MAXLENGTH=5>
+							<input type="text" name="nombre" id="foco" required autofocus MAXLENGTH=9>
 							<label for="contraseña">Contraseña</label>
 							<input type="password" name="contraseña">
 						</div>

@@ -96,7 +96,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a href="../menu.php" class="brand">Clinica San Diego</a>
+					<a href="../menu.php" class="brand">Clinica de Oftalmologia San Diego</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav" >
 							<li class="divider-vertical"></li>
@@ -176,6 +176,7 @@
      			<div class="controls">
      				<input type="text" name="nombre" id="nombre" autofocus  MAXLENGTH=9>
      			</div>
+     			<label class="control-label">(Maximo 9 caracteres)</label>
      		</div>
      		<div class="control-group">
      			<div class="controls">
@@ -190,7 +191,7 @@
 	<!--Modificamos la contraseña del usuairo-->
 	<div class="hide" id="formularioContraseña" title="Editar Nombre">
      	<form action="acciones.php" method="post" id="contraseñaValidar">
-     		<input type="hidden" id="id_registro" name="id_registro" value="0">
+     		<input type="hidden" id="id_registro2" name="id_registro2" value="0">
      		<div class="control-group">
      			<label for="contraseñaActual" class="control-label">Contraseña Actual</label>
      			<div class="controls">
@@ -212,7 +213,7 @@
      </div>
      
 	<footer>
-		<h2 id="pie"><img src="../img/copyright.png" alt="Autor"> Clinica San Diego - 2014</h2>
+		<h2 id="pie"><img src="../img/copyright.png" alt="Autor"> Clinica de Oftalmologia San Diego - 2014</h2>
 		<div id="pie"> <br>
 			<p>Asignacion de Citas 1.0</p>
 		</div>

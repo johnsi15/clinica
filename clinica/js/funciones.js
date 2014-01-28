@@ -9,9 +9,6 @@ $(document).ready(function(){
       },
       nombre:{
         required: true,
-        },
-      entidad: {
-        required: true,
       }
     },
     submitHandler: function(form){
@@ -28,10 +25,10 @@ $(document).ready(function(){
                    type: met,
                    data: $('#nuevaCita form').serialize(),
                    success: function(resp){
-                       //console.log(resp);
+                       console.log(resp);
                        if(resp == "Error"){
                              setTimeout(function(){ $("#mensajeError .alert").fadeOut(1000).fadeIn(1000).fadeOut(900).fadeIn(800).fadeOut(300);}, 1000); 
-                             var error = '<div class="alert alert-error">'+'<button type="button" class="close" data-dismiss="alert">'+'X'+'</button>'+'<strong>'+'Error'+'</strong>'+'<br> No se pudo procesar el prestamo Revise la Caja'+'</div>';
+                             var error = '<div class="alert alert-error">'+'<button type="button" class="close" data-dismiss="alert">'+'X'+'</button>'+'<strong>'+'Error'+'</strong>'+'<br> No se pudo procesar la citas'+'</div>';
                              $('#mensajeError .alert').remove();
                              $('#mensajeError').html(error);
                              $('#nuevaCita').dialog('close');
@@ -39,7 +36,7 @@ $(document).ready(function(){
                           $('#verCitas').empty();//limpiar la tabla.
                           $('#verCitas').html(resp);//imprimir datos de la tabla.
                           setTimeout(function(){ $("#mensaje .alert").fadeOut(1000).fadeIn(1000).fadeOut(900).fadeIn(800).fadeOut(300);}, 1000); 
-                          var exito = '<div class="alert alert-success">'+'<button type="button" class="close" data-dismiss="alert">'+'X'+'</button>'+'<strong>'+'Registro guardado '+'</strong>'+' El prestamo se hizo correctamente'+'</div>';
+                          var exito = '<div class="alert alert-success">'+'<button type="button" class="close" data-dismiss="alert">'+'X'+'</button>'+'<strong>'+'Registro guardado '+'</strong>'+' Registro Exitoso'+'</div>';
                           $('#mensaje').html(exito);//impresion del mensaje exitoso.
                           $('#registrarCita')[0].reset();///limpiamos los campos del formulario.
                           //$("#formMenu").removeClass('open');//cerramos el sub menu del registro
