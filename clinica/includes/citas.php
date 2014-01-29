@@ -181,23 +181,19 @@
 							<li class="divider-vertical"></li>
 							<li><a href="medicos.php"><i class="icon-user icon-white"></i> Medicos</a></li>
 							<li class="divider-vertical"></li>
+							<li><a href="pdfReportes.php"><i class="icon-book icon-white"></i> Reportes</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<i class="icon-user icon-white"></i> <?php echo $user; ?> <!--Mostramoe el user logeado -->
 								    <span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="registrarUsuario.php"><i class="icon-plus-sign"></i> Registrar Usuario</a></li>
+									<!-- <li><a href="registrarUsuario.php"><i class="icon-plus-sign"></i> Registrar Usuario</a></li> -->
 									<li><a href="editarUsuario.php"><i class="icon-wrench"></i> Configuración de la cuenta</a></li>
 									<li class="divider"></li>
 									<li><a href="cerrar.php">Cerrar Sesion</a></li>
 								</ul>
 							</li>
-							<?php 
-								date_default_timezone_set('America/Bogota'); 
-						        $fecha = date("Y-m-d");
-						        echo '<li><a href="#" style="font-weight: bold;">Fecha: '.$fecha.'</a></li>';
-					        ?>
 						</ul>
 					</div>
 				</div>
@@ -220,7 +216,7 @@
 	<section class="container well" id="fondo">
 		<input type="text" name="buscar" id="buscar" class="search-query" placeholder="Buscar" autofocus>	
 		<div class="row">
-			<h1>Clinica San Diego</h1> <br>
+			<h1>Clinica de Oftalmologia San Diego</h1> <br>
 			<div class="span4">
 				<a class="btn btn-large btn-success" id="nuevo">Nueva Cita</a>
 			</div>
@@ -281,9 +277,49 @@
 					<input type="text" name="nombre" required id="nombre" placeholder='Nombre'/>
 					<label>Entidad</label>
 					<select id="entidad" name="entidad">
-						<option value="COOMEVA">COOMEVA</option>
-						<option value="ECOOSOS">ECOOSOS</option>
-						<option value="CAFESALUD">CAFESALUD</option>
+						<option value="ECOPETROL">ECOPETROL</option>
+						<option value="UNIDAD SALUD ARAUCA">UNIDAD SALUD ARAUCA</option>
+						<option value="QBE SEGUROS SOAT">QBE SEGUROS SOAT</option>
+						<option value="ALLIANZ COLSEGUROS">ALLIANZ COLSEGUROS</option>
+						<option value="CAFESALUD SUBSIDIADA">CAFESALUD SUBSIDIADA</option>
+						<option value="CAFESALUD EPS">CAFESALUD EPS</option>
+						<option value="MEDPLUS">MEDPLUS</option>
+						<option value="CAPRECOM ARAUCA">CAPRECOM ARAUCA</option>
+						<option value="CAPRECOM INPEC">CAPRECOM INPEC</option>
+						<option value="CAPRECOM CUCUTA">CAPRECOM CUCUTA</option>
+						<option value="COMFAORIENTE EN LIQUIDACION">COMFAORIENTE EN LIQUIDACION</option>
+						<option value="COMPENSAR">COMPENSAR</option>
+						<option value="COOMEVA EPS">COOMEVA EPS</option>
+						<option value="COOMEVA M.P.">COOMEVA M.P.</option>
+						<option value="COOSALUD">COOSALUD</option>
+						<option value="COLMEDICA M.P.">COLMEDICA M.P.</option>
+						<option value="COLSANITAS S.A.">COLSANITAS S.A.</option>
+						<option value="DUSAKAWI">DUSAKAWI</option>
+						<option value="EFISALUD">EFISALUD</option>
+						<option value="EPS SANITAS">EPS SANITAS</option>
+						<option value="ECOOPSOS EPSS">ECOOPSOS EPSS</option>
+						<option value="FAMISALUD COMFANORTE">FAMISALUD COMFANORTE</option>
+						<option value="FUNDACION MEDICO PREVENTIVA">FUNDACION MEDICO PREVENTIVA</option>
+						<option value="FUNDACION VIRGILIO BARCO">FUNDACION VIRGILIO BARCO</option>
+						<option value="GOLDEN GROUP">GOLDEN GROUP</option>
+						<option value="INSTITUTO DEPARTAMENTAL DE SALUD">INSTITUTO DEPARTAMENTAL DE SALUD</option>
+						<option value="LA PREVISORA">LA PREVISORA</option>
+						<option value="LIBERTY SEGUROS">LIBERTY SEGUROS</option>
+						<option value="MAPFRE">MAPFRE</option>
+						<option value="MULTIMEDICAS">MULTIMEDICAS</option>
+						<option value="POLICIA NACIONAL">POLICIA NACIONAL</option>
+						<option value="POSITIVA ARL">POSITIVA ARL</option>
+						<option value="SALUDCOOP EPS">SALUDCOOP EPS</option>
+						<option value="SANATY">SANATY</option>
+						<option value="SEGUROS COLPATRIA">SEGUROS COLPATRIA</option>
+						<option value="SALUDVIDA EPSS">SALUDVIDA EPSS</option>
+						<option value="SEGUROS BOLIVAR">SEGUROS BOLIVAR</option>
+						<option value="SENA">SENA</option>
+						<option value="SURAMERICANA">SURAMERICANA</option>
+						<option value="SEGUROS GENERALES SURA">SEGUROS GENERALES SURA</option>
+						<option value="CDI">CDI</option>
+						<option value="RENTABIEN">RENTABIEN</option>
+						<option value="SEGUROS DEL ESTADO">SEGUROS DEL ESTADO</option>
 					</select>
 					<!-- <input type="text" name="entidad" required id="entidad">--><br> 
 				</div>
@@ -334,12 +370,12 @@
      		<input type="hidden" id="id_editar" name="id_editar" value="0"/>
      			<div class="control-group">
      				<select id="documentoEdit" name="documentoEdit" autofocus>
-						<option value="RC">(RC) Registro Civil</option>
-						<option value="TI">(TI) Tarjeta Identidad</option>
-						<option value="CC">(CC) Cedula Ciudadania</option>
-						<option value="CE">(CE) Cedula Extranjeria</option>
-						<option value="PA">(PA) Pasaporte</option>
-						<option value="NU">(NU) Numero Unico de Identifiacion</option>
+						<option value="RC">RC</option>
+						<option value="TI">TI</option>
+						<option value="CC">CC</option>
+						<option value="CE">CE</option>
+						<option value="PA">PA</option>
+						<option value="NU">NU</option>
 					</select>
 	     			<!-- <label>Cedula:</label> -->
 					<input type="text" name="cedulaEdit" required id="cedulaEdit" placeholder='Numero' class='input-medium'/>
@@ -347,15 +383,60 @@
 					<input type="text" name="nombreEdit" required id="nombreEdit" placeholde='Nombre'/>
 					<label>Entidad</label>
 					<select id="entidadEdit" name="entidadEdit">
-						<option value="COOMEVA">COOMEVA</option>
-						<option value="ECOOSOS">ECOOSOS</option>
-						<option value="CAFESALUD">CAFESALUD</option>
+						<option value="ECOPETROL">ECOPETROL</option>
+						<option value="UNIDAD SALUD ARAUCA">UNIDAD SALUD ARAUCA</option>
+						<option value="QBE SEGUROS SOAT">QBE SEGUROS SOAT</option>
+						<option value="ALLIANZ COLSEGUROS">ALLIANZ COLSEGUROS</option>
+						<option value="CAFESALUD SUBSIDIADA">CAFESALUD SUBSIDIADA</option>
+						<option value="CAFESALUD EPS">CAFESALUD EPS</option>
+						<option value="MEDPLUS">MEDPLUS</option>
+						<option value="CAPRECOM ARAUCA">CAPRECOM ARAUCA</option>
+						<option value="CAPRECOM INPEC">CAPRECOM INPEC</option>
+						<option value="CAPRECOM CUCUTA">CAPRECOM CUCUTA</option>
+						<option value="COMFAORIENTE EN LIQUIDACION">COMFAORIENTE EN LIQUIDACION</option>
+						<option value="COMPENSAR">COMPENSAR</option>
+						<option value="COOMEVA EPS">COOMEVA EPS</option>
+						<option value="COOMEVA M.P.">COOMEVA M.P.</option>
+						<option value="COOSALUD">COOSALUD</option>
+						<option value="COLMEDICA M.P.">COLMEDICA M.P.</option>
+						<option value="COLSANITAS S.A.">COLSANITAS S.A.</option>
+						<option value="DUSAKAWI">DUSAKAWI</option>
+						<option value="EFISALUD">EFISALUD</option>
+						<option value="EPS SANITAS">EPS SANITAS</option>
+						<option value="ECOOPSOS EPSS">ECOOPSOS EPSS</option>
+						<option value="FAMISALUD COMFANORTE">FAMISALUD COMFANORTE</option>
+						<option value="FUNDACION MEDICO PREVENTIVA">FUNDACION MEDICO PREVENTIVA</option>
+						<option value="FUNDACION VIRGILIO BARCO">FUNDACION VIRGILIO BARCO</option>
+						<option value="GOLDEN GROUP">GOLDEN GROUP</option>
+						<option value="INSTITUTO DEPARTAMENTAL DE SALUD">INSTITUTO DEPARTAMENTAL DE SALUD</option>
+						<option value="LA PREVISORA">LA PREVISORA</option>
+						<option value="LIBERTY SEGUROS">LIBERTY SEGUROS</option>
+						<option value="MAPFRE">MAPFRE</option>
+						<option value="MULTIMEDICAS">MULTIMEDICAS</option>
+						<option value="POLICIA NACIONAL">POLICIA NACIONAL</option>
+						<option value="POSITIVA ARL">POSITIVA ARL</option>
+						<option value="SALUDCOOP EPS">SALUDCOOP EPS</option>
+						<option value="SANATY">SANATY</option>
+						<option value="SEGUROS COLPATRIA">SEGUROS COLPATRIA</option>
+						<option value="SALUDVIDA EPSS">SALUDVIDA EPSS</option>
+						<option value="SEGUROS BOLIVAR">SEGUROS BOLIVAR</option>
+						<option value="SENA">SENA</option>
+						<option value="SURAMERICANA">SURAMERICANA</option>
+						<option value="SEGUROS GENERALES SURA">SEGUROS GENERALES SURA</option>
+						<option value="CDI">CDI</option>
+						<option value="RENTABIEN">RENTABIEN</option>
+						<option value="SEGUROS DEL ESTADO">SEGUROS DEL ESTADO</option>
 					</select>
 					<!-- <input type="text" name="entidadEdit" required id="entidadEdit"> --><br>
 				</div>
 				<div class="control-group">
 					<label>Tipo Cita</label>
-					<input type="text" name="tipoEdit" id="tipoEdit"/>
+					<!-- <input type="text" name="tipo" id="tipo"/> -->
+					<select id="tipoEdit" name="tipoEdit">
+						<option value="Consulta Primera Vez">Consulta Primera Vez</option>
+						<option value="Control Con Orden">Control Con Orden</option>
+						<option value="Control Sin Orden">Control Sin Orden</option>
+					</select>
 					<label>
                          <a href="#" id="infoFechaEdit" 
                                 data-toggle="tooltip" title="FECHA  EN QUE  EL USUARIO SOLICITALA CITA ">

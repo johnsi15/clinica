@@ -70,8 +70,9 @@
 
         $resultado = mysql_query("SELECT * FROM citas,medicos WHERE citas.doctor=medicos.idMedico ORDER BY citas.id ASC LIMIT $inicio,$cant_reg");
         while($fila = mysql_fetch_array($resultado)){
-            echo '<tr> 
-                    <td>'.$fila['cedula'].'</td>
+            echo '<tr>
+                    <td>'.$fila['documento'].'</td>  
+                    <td>'.$fila['numero'].'</td>
                     <td>'.$fila['nombre'].'</td>
                     <td>'.$fila['entidad'].'</td>
                     <td>'.$fila['tipo'].'</td>
@@ -149,8 +150,9 @@
 
            $resultado = mysql_query("SELECT * FROM citas,medicos WHERE citas.doctor=medicos.idMedico ORDER BY citas.id ASC LIMIT $inicio,$cant_reg");//obtenemos los datos ordenados limitado con la variable inicio hasta la variable cant_reg
             while($fila = mysql_fetch_array($resultado)){
-                 echo '<tr> 
-                    <td>'.$fila['cedula'].'</td>
+                 echo '<tr>
+                    <td>'.$fila['documento'].'</td>  
+                    <td>'.$fila['numero'].'</td>
                     <td>'.$fila['nombre'].'</td>
                     <td>'.$fila['entidad'].'</td>
                     <td>'.$fila['tipo'].'</td>
@@ -166,8 +168,9 @@
                                                 OR (citas.doctor=medicos.idMedico AND nombre LIKE'%$palabra%')");
             //echo json_encode($resultado);
             while($fila = mysql_fetch_array($resultado)){
-                echo '<tr> 
-                    <td>'.$fila['cedula'].'</td>
+                echo '<tr>
+                    <td>'.$fila['documento'].'</td> 
+                    <td>'.$fila['numero'].'</td>
                     <td>'.$fila['nombre'].'</td>
                     <td>'.$fila['entidad'].'</td>
                     <td>'.$fila['tipo'].'</td>
@@ -328,13 +331,13 @@
         
     }
 
-    public function modificarCita($cedula,$codigo,$nom,$entidad,$tipo,$fechaS,$fechaA,$observa,$medico){
+    public function modificarCita($documento,$cedula,$codigo,$nom,$entidad,$tipo,$fechaS,$fechaA,$observa,$medico){
         $resultado =mysql_query("SELECT idMedico FROM medicos WHERE nombreMedico='$medico'");
         if($fila = mysql_fetch_array($resultado)){
             $medico = $fila['idMedico'];
             //echo $medico;
         }
-        mysql_query("UPDATE citas SET cedula='$cedula', nombre='$nom', entidad='$entidad', tipo='$tipo',
+        mysql_query("UPDATE citas SET documento='$documento', numero='$cedula', nombre='$nom', entidad='$entidad', tipo='$tipo',
                                       fechaAsignacionPaciente='$fechaS', fechaAsignacionSistema='$fechaA',observaciones='$observa',
                                       doctor='$medico' WHERE id='$codigo'")
                  or die('problemas en el update de nombre'.mysql_error());
@@ -347,7 +350,22 @@
 
     /*ver base de la caja */
     public function verMedicos(){
-        $resultado = mysql_query("SELECT * FROM medicos");
+         $cant_reg = 10;//definimos la cantidad de datos que deseamos tenes por pagina.
+
+        if(isset($_GET["pagina"])){
+            $num_pag = $_GET["pagina"];//numero de la pagina
+        }else{
+            $num_pag = 1;
+        }
+
+        if(!$num_pag){//preguntamos si hay algun valor en $num_pag.
+            $inicio = 0;
+            $num_pag = 1;
+        }else{//se activara si la variable $num_pag ha resivido un valor oasea se encuentra en la pagina 2 o ha si susecivamente 
+            $inicio = ($num_pag-1)*$cant_reg;//si la pagina seleccionada es la numero 2 entonces 2-1 es = 1 por 10 = 10 empiesa a contar desde la 10 para la pagina 2 ok.
+        }
+
+        $resultado = mysql_query("SELECT * FROM medicos LIMIT $inicio,$cant_reg");
    
         while($fila = mysql_fetch_array($resultado)){
             echo '<tr> 
@@ -444,16 +462,6 @@
 
     }/*fin*/
 
-    /*ver interes de la caja*/
-    public function verInteres(){
-        $resultado = mysql_query("SELECT * FROM caja");
-   
-        if($fila = mysql_fetch_array($resultado)){
-            echo "<h2>".number_format($fila['interesTotal'])."</h2>";
-        }else{
-            echo "<h2>0</h2>";
-        }
-    }
 
     /*Codigo de combox para mostrar nombres de los clientes*/
     public function comboMedicos(){

@@ -1,7 +1,6 @@
 <?php
     require_once('funciones.php');
     $objeto = new funciones();
-    $refres = new funciones();
 
    //login de usuarios
    if(isset($_POST['clave'])){
@@ -37,6 +36,7 @@
    /*modificar citas*/
    if(isset($_POST['modificarCita'])){
         $codigo = $_POST['id_editar'];
+        $documento = $_POST['documentoEdit'];
         $cedula = $_POST['cedulaEdit'];
         $nom = $_POST['nombreEdit'];
         $entidad = $_POST['entidadEdit'];
@@ -46,7 +46,7 @@
         $fechaA = $_POST['fechaAEdit'];//fecha que asigna por la IPS
         $observa = $_POST['observaEdit'];
         $medico = $_POST['medicoEdit'];
-        $objeto->modificarCita($cedula,$codigo,$nom,$entidad,$tipo,$fechaS,$fechaA,$observa,$medico);
+        $objeto->modificarCita($documento,$cedula,$codigo,$nom,$entidad,$tipo,$fechaS,$fechaA,$observa,$medico);
         $objeto->paginacionCitas();
         $objeto->verCitas();
    }

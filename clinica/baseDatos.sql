@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-01-2014 a las 23:00:44
--- Versión del servidor: 5.5.27
--- Versión de PHP: 5.3.10
+-- Tiempo de generación: 29-01-2014 a las 19:22:19
+-- Versión del servidor: 5.6.12-log
+-- Versión de PHP: 5.4.12
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `clinica`
 --
-CREATE DATABASE `clinica` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `clinica` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `clinica`;
 
 -- --------------------------------------------------------
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `citas` (
   `doctor` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `doctor` (`doctor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Volcado de datos para la tabla `citas`
@@ -53,7 +53,6 @@ INSERT INTO `citas` (`id`, `documento`, `numero`, `nombre`, `entidad`, `tipo`, `
 (2, '', '1058265', 'andres', 'cafesalud', 'Control', '0000-00-00', '0000-00-00', '2014-01-27', '', 3),
 (3, '', '1058265', 'carlos', 'cafesalud', 'Colsulta', '0000-00-00', '0000-00-00', '2014-01-27', '', 1),
 (4, '', '1025845', 'Maria', 'coomeva', 'Consulta Primera vez', '2014-01-25', '0000-00-00', '2014-01-27', '', 2),
-(6, '', '10685424', 'dayana', 'saludcoop', 'Control', '2014-01-25', '2014-01-28', '0000-00-00', '', 4),
 (7, '', '1093763837', 'john andrey', 'coomeva', 'Control', '2014-01-26', '2014-02-03', '0000-00-00', '', 5),
 (8, '', '75867', 'prueba', 'prueba', 'prueba', '2014-01-27', '2014-01-28', '0000-00-00', '', 3),
 (9, 'CC', '98646', 'prueba', 'prueba', 'prueba', '2014-01-28', '2014-01-29', '0000-00-00', '', 3),
@@ -61,7 +60,8 @@ INSERT INTO `citas` (`id`, `documento`, `numero`, `nombre`, `entidad`, `tipo`, `
 (11, 'CC', '1343456', 'Maria Holguin', 'COOMEVA', 'Control sin Cita', '2014-01-28', '0000-00-00', '0000-00-00', '', 3),
 (12, 'CC', '1093763837', 'john andrey', 'COOMEVA', 'Control Con Orden', '2014-01-28', '2014-01-29', '0000-00-00', '', 3),
 (13, 'CC', '125666', 'prueba', 'COOMEVA', 'Consulta Primera Vez', '2014-01-28', '2014-01-29', '2014-01-29', '', 3),
-(14, 'RC', '67678', 'prueba', 'COOMEVA', 'Consulta Primera Vez', '2014-01-28', '2014-01-29', '0000-00-00', '', 4);
+(14, 'RC', '67678', 'prueba', 'COOMEVA', 'Consulta Primera Vez', '2014-01-28', '2014-01-29', '0000-00-00', '', 4),
+(15, 'CC', '1093763837', 'john andrey', 'ECOOSOS', 'Control Con Orden', '2014-01-29', '2014-01-30', '0000-00-00', '', 4);
 
 -- --------------------------------------------------------
 
@@ -73,18 +73,28 @@ CREATE TABLE IF NOT EXISTS `medicos` (
   `idMedico` int(11) NOT NULL AUTO_INCREMENT,
   `nombreMedico` varchar(90) NOT NULL,
   PRIMARY KEY (`idMedico`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Volcado de datos para la tabla `medicos`
 --
 
 INSERT INTO `medicos` (`idMedico`, `nombreMedico`) VALUES
-(1, 'medico 1'),
-(2, 'medico 2'),
-(3, 'medico 3'),
-(4, 'medico 4'),
-(5, 'medico 5');
+(1, 'DRA. MARTHA JANICE RODRIGUEZ QUINTERO'),
+(2, 'DR. RAFAEL GARCIA AMARIS'),
+(3, 'DR. PABLO EMILIO CORREA MONTAÃ‘EZ'),
+(4, 'DRA. ANGELA SOFIA ESPINEL CHAVES'),
+(5, 'DR. JUAN JOSE VANEGAS ACEVEDO'),
+(6, 'DR. ALVARO EDUARDO GUTIERREZ BONILLA'),
+(7, 'DRA. MARIA DEL PILAR MORA URBINA'),
+(8, 'DRA. GIOVANNA VILLAMIZAR REAL'),
+(9, 'DRA. SILVIA CAROLINA FLOREZ FAILLACE'),
+(10, 'DR. MAURICIO GARCIA'),
+(11, 'DR. FERNANDO CIANCI'),
+(12, 'DRA. ADRIANA AMADO'),
+(13, 'DR. JAVIER JIMENEZ DUARTE'),
+(14, 'DRA. ANA MARIA MORALES'),
+(15, 'DR. MARCUCCI RICARDO');
 
 -- --------------------------------------------------------
 

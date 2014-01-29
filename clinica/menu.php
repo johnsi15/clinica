@@ -155,23 +155,19 @@
 							<li class="divider-vertical"></li>
 							<li><a href="includes/medicos.php"><i class="icon-user icon-white"></i> Medicos</a></li>
 							<li class="divider-vertical"></li>
+							<li><a href="includes/pdfReportes.php"><i class="icon-book icon-white"></i> Reportes</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<i class="icon-user icon-white"></i> <?php echo $user; ?> <!--Mostramoe el user logeado -->
 								    <span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="includes/registrarUsuario.php"><i class="icon-plus-sign"></i> Registrar Usuario</a></li>
-									<li><a href="includes/editarUsuario.php"><i class="icon-wrench"></i> Configuración de la cuenta</a></li>
+<!-- 									<li><a href="includes/registrarUsuario.php"><i class="icon-plus-sign"></i> Registrar Usuario</a></li>
+ -->									<li><a href="includes/editarUsuario.php"><i class="icon-wrench"></i> Configuración de la cuenta</a></li>
 									<li class="divider"></li>
 									<li><a href="includes/cerrar.php">Cerrar Sesion</a></li>
 								</ul>
 							</li>
-							<?php 
-								date_default_timezone_set('America/Bogota'); 
-						        $fecha = date("Y-m-d");
-						        echo '<li><a href="#" style="font-weight: bold;">Fecha: '.$fecha.'</a></li>';
-					        ?>
 						</ul>
 					</div>
 				</div>
@@ -195,21 +191,22 @@
 	<article class="container well" id="fondo">
 		<input type="text" name="buscar" id="buscar" class="search-query" placeholder="Buscar" autofocus>
 		<div class="row">         
-			<h1>Clinica San Diego</h1><br>
+			<h1>Clinica de Oftalmologia San Diego</h1><br>
 			<h4 align="right" id="descargar"><a href="includes/pdf.php" title="Reporte de Citas">Descargar</a></h4>
 			<hr>
 			<div class="span12">
 				<table id="clientes" class="table table-hover table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>C.I</th>
-							<th>Nombre</th>
-							<th>Entidad</th>
-							<th>Tipo</th>
-							<th>Fecha Solicitud</th>
-							<th>Fecha Asig Usuario</th>
-							<th>Fecha Asig IPS</th>
-							<th>Medico</th>
+							<th>T.D</th>
+							<th>NUMERO</th>
+							<th>NOMBRE</th>
+							<th>ENTIDAD</th>
+							<th>TIPO</th>
+							<th>FECHA SOLICITUD</th>
+							<th>FECHA ASIGNADAUSUARIO</th>
+							<th>FECHA ASIGNADA IPS</th>
+							<th>MEDICO</th>
 						</tr>
 					</thead>
 					<tbody id="verCitasInicio">

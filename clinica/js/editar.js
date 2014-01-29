@@ -91,15 +91,20 @@ $(document).ready(function(){
             $('#editarCita').dialog('open');
 
             $('#id_editar').val($(this).attr('href'));
-            $('#cedulaEdit').val($(this).parent().parent().children('td:eq(0)').text());
-            $('#nombreEdit').val($(this).parent().parent().children('td:eq(1)').text());
-            $('#entidadEdit').val($(this).parent().parent().children('td:eq(2)').text());
-            $('#tipoEdit').val($(this).parent().parent().children('td:eq(3)').text());
-            $('#fechaSEdit').val($(this).parent().parent().children('td:eq(5)').text());
-            $('#fechaAEdit').val($(this).parent().parent().children('td:eq(6)').text());
-            $('#observaEdit').val($(this).parent().parent().children('td:eq(7)').text());
+            var documento = $(this).parent().parent().children('td:eq(0)').text();
+            $('#documentoEdit option[value="'+documento+'"]').attr('selected',true);
+
+            $('#cedulaEdit').val($(this).parent().parent().children('td:eq(1)').text());
+            $('#nombreEdit').val($(this).parent().parent().children('td:eq(2)').text());
+            var entidad = $(this).parent().parent().children('td:eq(3)').text();
+            $('#entidadEdit option[value="'+entidad+'"]').attr('selected',true);
+            var tipo = $(this).parent().parent().children('td:eq(4)').text();
+            $('#tipoEdit option[value="'+tipo+'"]').attr('selected',true);
+            $('#fechaSEdit').val($(this).parent().parent().children('td:eq(6)').text());
+            $('#fechaAEdit').val($(this).parent().parent().children('td:eq(7)').text());
+            $('#observaEdit').val($(this).parent().parent().children('td:eq(8)').text());
             //selecccion de un combo box.
-            var texto = $(this).parent().parent().children('td:eq(8)').text();
+            var texto = $(this).parent().parent().children('td:eq(9)').text();
             //alert(texto);
             $('#medicoEdit option[value="'+texto+'"]').attr('selected',true);
       });

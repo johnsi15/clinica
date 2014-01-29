@@ -8,8 +8,8 @@
 	         $bd->conectar();
 	     }
 
-	     public function listado(){
-	     	$codigoHTML='<!DOCTYPE>
+	   public function listado($palabra){
+	   	   		$codigoHTML='<!DOCTYPE>
 	     				<html lang="es">
 	     				<head>
 	     				    <title></title>
@@ -19,7 +19,7 @@
 	     						<h1 align="center"> Reporte de Citas </h1>
 	     						<hr>
 	     						<div align="center">
-		     						<table width="98%" rules="rows" border="1">
+		     						<table width="100%" rules="rows" border="1">
 		     								<thead>
 		     									<tr>
 		     										<th>T.D</th>
@@ -32,7 +32,8 @@
 													<th>FECHA ASIGNADA IPS</th>
 													<th>MEDICO</th>
 		     									</tr>';
-		     									 $consulta=mysql_query("SELECT * FROM citas,medicos WHERE citas.doctor=medicos.idMedico ORDER BY citas.id ASC");
+		     									$consulta = mysql_query("SELECT * FROM citas,medicos WHERE (citas.doctor=medicos.idMedico AND nombreMedico='$palabra')
+                                               				 OR (citas.doctor=medicos.idMedico AND entidad='$palabra')");
 											    while($fila=mysql_fetch_array($consulta)){
 											$codigoHTML.='
 		     								</thead>
@@ -55,14 +56,23 @@
 		     					</div>
 	     					</body>
 	     				</html>';
-	     				$codigoHTML=utf8_decode($codigoHTML);
-						$dompdf=new DOMPDF();
-						$dompdf->load_html($codigoHTML);
-						ini_set("memory_limit","128M");
-						$dompdf->render();
-						$dompdf->stream("ReporteCitas.pdf");
-	     }
- 	}
+	     		$codigoHTML=utf8_decode($codigoHTML);
+				$dompdf=new DOMPDF();
+				$dompdf->load_html($codigoHTML);
+				ini_set("memory_limit","128M");
+				$dompdf->render();
+				$dompdf->stream("ReporteCitas.pdf");
+				$exit(0);
+	   	   
+	    }//fin metodo
+ 	}//fin clase
+ 	$opcion = $_POST['opcion'];
+	if($opcion == 1){
+		$palabra = $_POST['nombre'];
+	}else{
+		$palabra = $_POST['entidad'];
+	}
+ 	echo $palabra;
  	$ejecutar = new funciones();
- 	$ejecutar->listado();
+ 	$ejecutar->listado($palabra);
 ?>

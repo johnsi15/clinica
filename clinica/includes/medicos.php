@@ -70,7 +70,7 @@
 	<script>
       $(document).ready(function(){
       	// ver mas datos de los prestamos
-      	$('[data-toggle=popover]').popover({html:true});
+      	//$('[data-toggle=popover]').popover({html:true});
 
       	var menu = $('#bloque');
 		var contenedor = $('#bloque-contenedor');
@@ -176,6 +176,7 @@
 							<li ><a href="citas.php"><i class="icon-tags icon-white"></i> Citas</a></li>
 							<li class="divider-vertical"></li>
 							<li class="active"><a href="medicos.php"><i class="icon-user icon-white"></i> Medicos</a></li>
+							<li><a href="pdfReportes.php"><i class="icon-book icon-white"></i> Reportes</a></li>
 							<li class="divider-vertical"></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -183,17 +184,12 @@
 								    <span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="registrarUsuario.php"><i class="icon-plus-sign"></i> Registrar Usuario</a></li>
+									<!-- <li><a href="registrarUsuario.php"><i class="icon-plus-sign"></i> Registrar Usuario</a></li> -->
 									<li><a href="editarUsuario.php"><i class="icon-wrench"></i> Configuración de la cuenta</a></li>
 									<li class="divider"></li>
 									<li><a href="cerrar.php">Cerrar Sesion</a></li>
 								</ul>
 							</li>
-							<?php 
-								date_default_timezone_set('America/Bogota'); 
-						        $fecha = date("Y-m-d");
-						        echo '<li><a href="#" style="font-weight: bold;">Fecha: '.$fecha.'</a></li>';
-					        ?>
 					</div>
 				</div>
 			</div>
@@ -215,13 +211,13 @@
 	<section class="container well" id="fondo">
 		<input type="text" name="buscar" id="buscar" class="search-query" placeholder="Buscar" autofocus>	
 		<div class="row">
-			<h1>Clinica San Diego</h1> <br>
+			<h1>Clinica de Oftalmologia San Diego</h1> <br>
 			<div class="span4">
 				<a class="btn btn-large btn-success" id="nuevo">Nuevo Medico</a>
 			</div>
 			<div class="span12">
 				<hr>
-				<table class="table table-hover table-bordered table-condensed">
+				<table class="table table-hover table-bordered">
 					<thead>
 						<tr>
 							<th>N°</th>
