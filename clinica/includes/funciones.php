@@ -480,19 +480,6 @@
         }
     }
 
-    /*combox para mostrar los prestamos del cliente*/
-    // public function comboPrestamos(){
-    //     $resultado = mysql_query("SELECT cedulaCliente FROM clientes LIMIT 1");
-    //     $dato = mysql_fetch_array($resultado);
-    //     $cedula = $dato['cedulaCliente'];
-    //     $result = mysql_query("SELECT codigo FROM prestamos WHERE cedula='$cedula'");
-    //     while ($fila = mysql_fetch_array($result)) {
-    //         echo "<option value='".$fila['codigo']."'>".$fila['codigo']."
-    //                  </option>";
-    //     }
-    // }
-
-
     /*MODIFICAR DATOS DEL USUAIRO Y CREAR....*/
     public function editarNombreUser($nom,$cod){
         $nom = strtolower($nom);

@@ -16,14 +16,15 @@
 	     				    <meta charset="UTF-8"/>
 	     				</head>
 	     					<body>
+	     						<img src="../img/logo.png"/>
 	     						<h1 align="center"> Reporte de Citas </h1>
 	     						<hr>
 	     						<div align="center">
-		     						<table width="98%" rules="rows" border="1">
+		     						<table align="center" width="95%" rules="rows" border="1">
 		     								<thead>
 		     									<tr>
 		     										<th>T.D</th>
-													<th>N°</th>
+													<th>NUMERO</th>
 													<th>NOMBRE</th>
 													<th>ENTIDAD</th>
 													<th>TIPO</th>
@@ -31,9 +32,13 @@
 													<th>FECHA ASIGNADA USUARIO</th>
 													<th>FECHA ASIGNADA IPS</th>
 													<th>MEDICO</th>
+													<th>OPRT</th>
 		     									</tr>';
 		     									 $consulta=mysql_query("SELECT * FROM citas,medicos WHERE citas.doctor=medicos.idMedico ORDER BY citas.id ASC");
 											    while($fila=mysql_fetch_array($consulta)){
+											    	$diaSolicitud = substr($fila['fechaSolicitud'],8,10);
+											    	$diaIps = substr($fila['fechaAsignacionSistema'],8,10);
+											    	$oportunidad = $diaIps - $diaSolicitud;
 											$codigoHTML.='
 		     								</thead>
 		     								<tbody>
@@ -47,6 +52,7 @@
 								                    <td>'.$fila['fechaAsignacionPaciente'].'</td>
 								                    <td>'.$fila['fechaAsignacionSistema'].'</td>
 								                    <td>'.$fila['nombreMedico'].'</td>
+								                    <td>'.$oportunidad.'</td>
 											      </tr>';
 											      } 
 											$codigoHTML.='

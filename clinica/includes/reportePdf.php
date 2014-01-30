@@ -19,7 +19,7 @@
 	     						<h1 align="center"> Reporte de Citas </h1>
 	     						<hr>
 	     						<div align="center">
-		     						<table width="100%" rules="rows" border="1">
+		     						<table rules="rows" border="1">
 		     								<thead>
 		     									<tr>
 		     										<th>T.D</th>
@@ -31,10 +31,14 @@
 													<th>FECHA ASIGNADA USUARIO</th>
 													<th>FECHA ASIGNADA IPS</th>
 													<th>MEDICO</th>
+													<th>OPRT</th>
 		     									</tr>';
-		     									$consulta = mysql_query("SELECT * FROM citas,medicos WHERE (citas.doctor=medicos.idMedico AND nombreMedico='$palabra')
+		     									$consulta = mysql_query("SELECT * FROM citas,medicos WHERE (citas.doctor=medicos.idMedico AND idMedico='$palabra')
                                                				 OR (citas.doctor=medicos.idMedico AND entidad='$palabra')");
 											    while($fila=mysql_fetch_array($consulta)){
+											    	$diaSolicitud = substr($fila['fechaSolicitud'],8,10);
+											    	$diaIps = substr($fila['fechaAsignacionSistema'],8,10);
+											    	$oportunidad = $diaIps - $diaSolicitud;
 											$codigoHTML.='
 		     								</thead>
 		     								<tbody>
@@ -48,6 +52,7 @@
 								                    <td>'.$fila['fechaAsignacionPaciente'].'</td>
 								                    <td>'.$fila['fechaAsignacionSistema'].'</td>
 								                    <td>'.$fila['nombreMedico'].'</td>
+								                    <td>'.$oportunidad.'</td>
 											      </tr>';
 											      } 
 											$codigoHTML.='
@@ -72,7 +77,7 @@
 	}else{
 		$palabra = $_POST['entidad'];
 	}
- 	echo $palabra;
+ 	//echo $palabra;
  	$ejecutar = new funciones();
  	$ejecutar->listado($palabra);
 ?>

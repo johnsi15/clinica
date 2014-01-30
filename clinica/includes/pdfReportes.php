@@ -133,7 +133,7 @@
 						<?php
 	                        require_once('funciones.php');
 	                        $combo = new funciones();
-	                        $combo->comboMedicosEdit();
+	                        $combo->comboMedicos();
 						?>
 					</select>
 					<label>Entidad: </label>

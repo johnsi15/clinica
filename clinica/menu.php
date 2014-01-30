@@ -204,7 +204,7 @@
 							<th>ENTIDAD</th>
 							<th>TIPO</th>
 							<th>FECHA SOLICITUD</th>
-							<th>FECHA ASIGNADAUSUARIO</th>
+							<th>FECHA ASIGNADA USUARIO</th>
 							<th>FECHA ASIGNADA IPS</th>
 							<th>MEDICO</th>
 						</tr>
