@@ -176,6 +176,7 @@
 							<li ><a href="citas.php"><i class="icon-tags icon-white"></i> Citas</a></li>
 							<li class="divider-vertical"></li>
 							<li class="active"><a href="medicos.php"><i class="icon-user icon-white"></i> Medicos</a></li>
+							<li class="divider-vertical"></li>
 							<li><a href="pdfReportes.php"><i class="icon-book icon-white"></i> Reportes</a></li>
 							<li class="divider-vertical"></li>
 							<li class="dropdown">
@@ -183,6 +184,7 @@
 									<i class="icon-user icon-white"></i> <?php echo $user; ?> <!--Mostramoe el user logeado -->
 								    <span class="caret"></span>
 								</a>
+								<li class="divider-vertical"></li>
 								<ul class="dropdown-menu">
 									<!-- <li><a href="registrarUsuario.php"><i class="icon-plus-sign"></i> Registrar Usuario</a></li> -->
 									<li><a href="editarUsuario.php"><i class="icon-wrench"></i> Configuración de la cuenta</a></li>

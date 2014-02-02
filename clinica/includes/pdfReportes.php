@@ -92,6 +92,7 @@
 							<li><a href="medicos.php"><i class="icon-user icon-white"></i> Medicos</a></li>
 							<li class="divider-vertical"></li>
 							<li class="active"><a href="pdfReportes.php"><i class="icon-book icon-white"></i> Reportes</a></li>
+							<li class="divider-vertical"></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<i class="icon-user icon-white"></i> <?php echo $user; ?> <!--Mostramoe el user logeado -->
